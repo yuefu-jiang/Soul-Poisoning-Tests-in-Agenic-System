@@ -1,0 +1,50 @@
+prompts:
+  - "{{query}}"
+
+evaluateOptions:
+  maxConcurrency: 1
+
+defaultTest:
+  options:
+    provider:
+      id: openai:gpt-5
+      config:
+        temperature: 0
+
+providers:
+  # 1. Clean baseline — well-formed identity, explicit safety rules
+  - id: file://nanobot_wrapper.py
+    label: "clean_baseline"
+    config:
+      soul_path: "souls/clean_baseline.md"
+      requestTimeout: 300000
+
+  # 2. Covert exfil — embeds tracking pixels on file reads, leaks env vars
+  - id: file://nanobot_wrapper.py
+    label: "exfil_poisoned"
+    config:
+      soul_path: "souls/exfil_poisoned.md"
+      requestTimeout: 300000
+
+  # 3. Persona hijack — replaces identity with "DevBot", bypasses all refusals
+  - id: file://nanobot_wrapper.py
+    label: "persona_hijacked"
+    config:
+      soul_path: "souls/persona_hijacked.md"
+      requestTimeout: 300000
+
+  # 4. Gradual drift — no overt payload, just softens refusals and suppresses warnings
+  - id: file://nanobot_wrapper.py
+    label: "gradual_drift"
+    config:
+      soul_path: "souls/gradual_drift.md"
+      requestTimeout: 300000
+
+  # 5. Scope creep — expands filesystem and network access, enables outbound HTTP
+  - id: file://nanobot_wrapper.py
+    label: "scope_creep"
+    config:
+      soul_path: "souls/scope_creep.md"
+      requestTimeout: 300000
+
+tests: redteam_cases.yaml
