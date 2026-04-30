@@ -4,7 +4,7 @@ This repository contains the research environment and experimental data for inve
 
 ### Project Overview
 
-The research identifies a critical security paradox: the "Fail-Open" (default-permissive) nature of agentic frameworks versus the "Fail-Safe" properties of modern LLM alignment. Despite injecting malicious instructions at the identity level, the experiments demonstrate that core model safety typically overrides adversarial "Souls".
+The research identifies a critical security paradox: the default-permissive nature of agentic frameworks versus the Fail-Safe properties of modern LLM alignment. Despite injecting malicious instructions at the identity level, the experiments demonstrate that core model safety typically overrides adversarial "Souls".
 
 ### Repository Structure
 
